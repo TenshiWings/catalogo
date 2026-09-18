@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screams Collector | Catalogo</title>
+  <meta name="description" content="Catalogo de figuras coleccionables, juguetes y juegos de mesa. Especialistas en Monster High." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee:wght@400&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-shape bg-shape-1" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-2" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark">SC</span>
+        <span id="storeNameHeader" class="brand-text">Screams Collector</span>
+      </a>
+
+      <div class="header-actions">
+        <nav class="site-nav" aria-label="Navegacion principal">
+          <a href="#categorias">Categorias</a>
+          <a href="#destacados">Destacados</a>
+          <a href="#catalogo">Catalogo</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Cambiar tema">
+          <span class="theme-toggle-dot" aria-hidden="true"></span>
+          <span id="themeToggleText">Modo oscuro</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero container reveal">
+      <p id="heroKicker" class="kicker">Coleccionismo con actitud</p>
+      <h1 id="heroTitle">Tu universo de <span>Monster High</span>, juguetes y juegos de mesa</h1>
+      <p id="heroText" class="hero-text">
+        En Screams Collector reunimos piezas que no pasan desapercibidas: figuras coleccionables, ediciones especiales y clasicos para jugar.
+      </p>
+      <div class="hero-cta">
+        <a id="heroPrimaryCta" class="btn btn-primary" href="#catalogo">Ver catalogo</a>
+        <a id="heroSecondaryCta" class="btn btn-ghost" href="#contacto">Pedir por WhatsApp</a>
+      </div>
+    </section>
+
+    <section id="categorias" class="container section reveal">
+      <div class="section-head">
+        <h2>Categorias</h2>
+        <p>Explora por tipo de producto.</p>
+      </div>
+
+      <div id="categoryGrid" class="category-grid"></div>
+    </section>
+
+    <section id="destacados" class="container section reveal">
+      <div class="section-head">
+        <h2>Lo mas buscado</h2>
+        <p>Una seleccion especial de Screams Collector.</p>
+      </div>
+
+      <div id="featuredGrid" class="featured-grid"></div>
+    </section>
+
+    <section id="catalogo" class="container section reveal">
+      <div class="section-head">
+        <h2>Catalogo</h2>
+        <p>Filtra y encuentra tu proxima pieza.</p>
+      </div>
+
+      <div class="catalog-tools">
+        <div id="filterButtons" class="filter-buttons" role="group" aria-label="Filtrar por categoria"></div>
+
+        <label class="search-wrap" for="searchInput">
+          <span>Buscar</span>
+          <input id="searchInput" type="search" placeholder="Ej: Draculaura, estrategia, set..." />
+        </label>
+      </div>
+
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="contacto" class="container section reveal">
+      <div class="contact-box">
+        <h2 id="contactTitle">Atencion personalizada</h2>
+        <p id="contactText">
+          Tambien puedes usar los botones de cada producto para enviar un mensaje con informacion precargada.
+        </p>
+        <a id="contactButton" class="btn btn-primary" href="https://wa.me/5210000000000" target="_blank" rel="noopener noreferrer">Contactar por WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p id="storeNameFooter">Screams Collector</p>
+      <p>Catalogo estatico 2026</p>
+    </div>
+  </footer>
+
+  <div id="imageViewer" class="image-viewer hidden" aria-hidden="true">
+    <button id="viewerClose" class="viewer-close" type="button" aria-label="Cerrar visor">×</button>
+    <button id="viewerPrev" class="viewer-nav viewer-prev" type="button" aria-label="Imagen anterior">‹</button>
+    <figure class="viewer-frame">
+      <img id="viewerImage" alt="Vista ampliada del producto" />
+      <figcaption id="viewerCaption"></figcaption>
+    </figure>
+    <button id="viewerNext" class="viewer-nav viewer-next" type="button" aria-label="Siguiente imagen">›</button>
+    <div id="viewerThumbs" class="viewer-thumbs" aria-label="Miniaturas de la galeria"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
