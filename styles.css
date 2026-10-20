@@ -558,8 +558,16 @@ body {
   display: none;
 }
 
+.viewer-shell {
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.72fr);
+  gap: 24px;
+  align-items: start;
+}
+
 .viewer-frame {
-  width: min(920px, 100%);
+  width: 100%;
   margin: 0;
   text-align: center;
 }
@@ -577,6 +585,62 @@ body {
   margin-top: 12px;
   color: #fff;
   font-weight: 700;
+}
+
+.viewer-details {
+  align-self: stretch;
+  padding: 24px;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+  box-shadow: var(--shadow);
+}
+
+.viewer-badge.hidden {
+  display: none;
+}
+
+.viewer-badge {
+  margin-bottom: 14px;
+}
+
+.viewer-details h3 {
+  margin: 0;
+  font-family: "Bungee", sans-serif;
+  font-size: clamp(1.35rem, 3vw, 2.1rem);
+  line-height: 1.08;
+}
+
+.viewer-meta,
+.viewer-description {
+  color: var(--ink-soft);
+}
+
+.viewer-meta {
+  margin: 12px 0 0;
+  font-weight: 700;
+}
+
+.viewer-price {
+  margin: 16px 0 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.viewer-stock {
+  margin: 10px 0 0;
+  font-weight: 800;
+  color: var(--stock);
+}
+
+.viewer-description {
+  margin: 18px 0 0;
+  line-height: 1.65;
+  max-width: 40ch;
+}
+
+.viewer-cta {
+  margin-top: 22px;
 }
 
 .viewer-close,
@@ -747,6 +811,15 @@ body {
     height: 44px;
   }
 
+  .viewer-shell {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .viewer-details {
+    padding: 18px;
+  }
+
   .viewer-prev {
     left: 10px;
   }
@@ -769,5 +842,157 @@ body {
   .contact-box {
     padding: 22px;
     border-radius: 18px;
+  }
+}
+
+/* ---------- Catalogo v2: filtros, paginacion y tarjetas ---------- */
+
+.catalog-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-items: end;
+}
+
+.catalog-filters .search-wrap {
+  max-width: none;
+}
+
+.select-wrap {
+  display: grid;
+  gap: 6px;
+}
+
+.select-wrap span {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.select-wrap select {
+  min-height: 44px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--line) 72%, var(--primary-2));
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0 10px;
+  font: inherit;
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .catalog-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .catalog-filters .search-wrap {
+    grid-column: 1 / -1;
+  }
+}
+
+.result-count {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.load-more-sentinel {
+  height: 1px;
+}
+
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.product-gallery-main {
+  display: block;
+  position: relative;
+}
+
+.photo-count {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: rgba(8, 10, 16, 0.7);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 3px 8px;
+}
+
+.product-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+}
+
+.product-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-link:hover,
+.product-link:focus-visible {
+  text-decoration: underline;
+}
+
+.compare-price {
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-size: 0.85em;
+  margin-left: 4px;
+}
+
+.product-card[data-status="sold_out"] .product-image {
+  filter: grayscale(0.7);
+  opacity: 0.75;
+}
+
+.stock-sold_out {
+  color: var(--ink-soft);
+}
+
+.stock-preorder {
+  font-weight: 700;
+}
+
+.product-card.skeleton {
+  min-height: 340px;
+  background: linear-gradient(100deg, var(--surface) 30%, color-mix(in srgb, var(--surface) 80%, var(--line)) 50%, var(--surface) 70%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.2s linear infinite;
+}
+
+@keyframes skeletonShimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+a.featured-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+button.category-card {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+}
+
+.viewer-nav[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-card.skeleton {
+    animation: none;
   }
 }

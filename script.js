@@ -25,6 +25,13 @@ const viewerNext = document.getElementById("viewerNext");
 const viewerImage = document.getElementById("viewerImage");
 const viewerCaption = document.getElementById("viewerCaption");
 const viewerThumbs = document.getElementById("viewerThumbs");
+const viewerBadge = document.getElementById("viewerBadge");
+const viewerTitle = document.getElementById("viewerTitle");
+const viewerMeta = document.getElementById("viewerMeta");
+const viewerPrice = document.getElementById("viewerPrice");
+const viewerStock = document.getElementById("viewerStock");
+const viewerDescription = document.getElementById("viewerDescription");
+const viewerWhatsapp = document.getElementById("viewerWhatsapp");
 
 let activeFilter = "all";
 let products = [];
@@ -259,6 +266,7 @@ function normalizeProduct(record) {
     imageGallery,
     badge: record.badge || "",
     summary: record.short_description || record.description || "",
+    description: record.description || record.short_description || "",
     whatsappMessageTemplate: record.whatsapp_message_template || ""
   };
 }
@@ -283,6 +291,20 @@ function renderImageViewer(product) {
   viewerImage.src = image.imageUrl;
   viewerImage.alt = image.altText || product.name;
   viewerCaption.textContent = `${product.name} · Imagen ${activeGalleryIndex + 1} de ${activeGallery.length}`;
+  viewerTitle.textContent = product.name;
+  viewerMeta.textContent = `${product.type} | ${product.categoryLabel}`;
+  viewerPrice.textContent = formatPrice(product.price);
+  viewerStock.textContent = product.stock;
+  viewerDescription.textContent = product.description || product.summary || "Consulta con nosotros para conocer mas detalles de esta pieza.";
+  viewerWhatsapp.href = buildWhatsappLink(product);
+
+  if (product.badge) {
+    viewerBadge.textContent = product.badge;
+    viewerBadge.classList.remove("hidden");
+  } else {
+    viewerBadge.textContent = "";
+    viewerBadge.classList.add("hidden");
+  }
 
   viewerThumbs.innerHTML = activeGallery.map((item, index) => `
     <button class="viewer-thumb ${index === activeGalleryIndex ? "active" : ""}" type="button" data-index="${index}">
